@@ -1,13 +1,11 @@
 package coinpurse;
 
-//TODO fix this Javadoc. It should be written as a COMPLETE SENTENCE WITH PERIOD.
 /**
- * a coin with a monetary value and currency
+ * A coin with a monetary value and currency.
  * 
  * @author Archawin Tirugsapun
  */
-// TODO declare that Coin implements Comparable<Coin>
-public class Coin implements Comparable<Coin> {
+public class Coin implements Comparable<Coin>, Valuable {
 	public static final String DEFAULT_CURRENCY = "Baht";
 	/** Value of the coin. */
 	private final double value;
@@ -35,17 +33,32 @@ public class Coin implements Comparable<Coin> {
 		this.currency = currency;
 	}
 
-	// TODO Write a getValue() method and javadoc.
+	/**
+	 * Return the value of the coin.
+	 * 
+	 * @return value of the coin.
+	 */
 	public double getValue() {
 		return value;
 	}
 
-	// TODO Write a getCurrency() method and javadoc.
+	/**
+	 * Return coin currency.
+	 * 
+	 * @return coin currency.
+	 */
 	public String getCurrency() {
 		return currency;
 	}
 
-	// TODO Write an equals(Object) method.
+	/**
+	 * Check that two coin are equal or not by its currency and value of coin.
+	 * 
+	 * @param obj
+	 *            other object that use to compare.
+	 * 
+	 * @return true if 2 coins are equal.
+	 */
 	public boolean equals(Object obj) {
 		if (obj == null)
 			return false;
@@ -58,13 +71,18 @@ public class Coin implements Comparable<Coin> {
 		return false;
 	}
 
-	// TODO Write a compareTo method and implement Comparable.
-
-	// TODO write a toString() method. See labsheet for what to return.
-	public String toString() {
-		return value + "-" + currency;
-	}
-
+	/**
+	 * Check coin with other coin by its value if this coin has more value than
+	 * other coin it will return 1, it return 0 if two have the same value, and
+	 * -1 if other coin has more value than this coin or other value is null.
+	 * 
+	 * @param o
+	 *            other coin that use to compare.
+	 * 
+	 * @return if this coin has more value than other coin it will return 1, it
+	 *         return 0 if two have the same value, and -1 if other coin has
+	 *         more value than this coin or other value is null.
+	 */
 	@Override
 	public int compareTo(Coin o) {
 		if (o == null)
@@ -72,7 +90,12 @@ public class Coin implements Comparable<Coin> {
 		return (int) Math.signum(this.getValue() - o.getValue());
 	}
 
-	// TODO Write good Javadoc comments on all methods.
-
+	/**
+	 * Return string information from it value and currency.
+	 * 
+	 * @return string information from it value and currency.
+	 */
+	public String toString() {
+		return value + "-" + currency;
+	}
 }
-// TODO remove the TODO comments after you complete them! Including this one!
