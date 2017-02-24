@@ -16,16 +16,6 @@ public class BankNote extends AbstractValuable {
 		nextSerialNumber++;
 	}
 
-	@Override
-	public double getValue() {
-		return value;
-	}
-
-	@Override
-	public String getCurrency() {
-		return currency;
-	}
-
 	public long getSerial() {
 		return serialNumber;
 	}

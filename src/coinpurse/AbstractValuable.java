@@ -34,11 +34,21 @@ public class AbstractValuable implements Valuable {
 		return false;
 	}
 
+	/**
+	 * Return the value of the coin.
+	 * 
+	 * @return value of the coin.
+	 */
 	@Override
 	public double getValue() {
 		return value;
 	}
 
+	/**
+	 * Return coin currency.
+	 * 
+	 * @return coin currency.
+	 */
 	@Override
 	public String getCurrency() {
 		return currency;
