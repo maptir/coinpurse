@@ -7,6 +7,7 @@ package coinpurse;
  */
 public class Coin extends AbstractValuable {
 	public static final String DEFAULT_CURRENCY = "Baht";
+	public String specialCurrecny;
 
 	/**
 	 * A coin with given value using the default currency.
@@ -27,12 +28,19 @@ public class Coin extends AbstractValuable {
 		super(value, currency);
 	}
 
+	public void setSpecialCurrency(String specialCurrency) {
+		this.specialCurrecny = specialCurrency;
+	}
+
 	/**
 	 * Return string information from it value and currency.
 	 * 
 	 * @return string information from it value and currency.
 	 */
 	public String toString() {
-		return value + "-" + currency;
+		if (super.getValue() < 1) {
+			return super.getValue() * 100 + " " + specialCurrecny + " coin";
+		}
+		return super.getValue() + " " + currency + " coin";
 	}
 }

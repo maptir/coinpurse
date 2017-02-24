@@ -21,6 +21,6 @@ public class BankNote extends AbstractValuable {
 	}
 
 	public String toString() {
-		return value + "-" + currency + "[" + serialNumber + "]";
+		return value + " " + currency + " note [" + serialNumber + "]";
 	}
 }

@@ -2,7 +2,7 @@ package coinpurse;
 
 /**
  * 
- * @author User
+ * @author Archawin Tirugsapun
  *
  */
 public interface Valuable extends Comparable<Valuable> {

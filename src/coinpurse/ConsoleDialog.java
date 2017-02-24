@@ -67,17 +67,29 @@ public class ConsoleDialog {
 		Scanner scanline = new Scanner(inline);
 		while (scanline.hasNextDouble()) {
 			double value = scanline.nextDouble();
-			if (value < 20) {
-				Coin coin = new Coin(value);
-				System.out.printf("Deposit %s... ", coin.toString());
-				boolean ok = purse.insert(coin);
-				System.out.println((ok ? "ok" : "FAILED"));
-			} else {
-				BankNote bank = new BankNote(value);
-				System.out.printf("Deposit %s... ", bank.toString());
-				boolean ok = purse.insert(bank);
-				System.out.println((ok ? "ok" : "FAILED"));
+			// if (value < 20) {
+			// Coin coin = new Coin(value);
+			// System.out.printf("Deposit %s... ", coin.toString());
+			// boolean ok = purse.insert(coin);
+			// System.out.println((ok ? "ok" : "FAILED"));
+			// } else {
+			// BankNote bank = new BankNote(value);
+			// System.out.printf("Deposit %s... ", bank.toString());
+			// boolean ok = purse.insert(bank);
+			// System.out.println((ok ? "ok" : "FAILED"));
+			// }
+			MoneyFactory factory = MoneyFactory.getInstance();
+			Valuable money;
+			try {
+				money = factory.createMoney(value);
+			} catch (IllegalArgumentException ex) {
+				System.out.println("Sorry, " + value
+						+ " is not a valid amount.");
+				continue;
 			}
+			System.out.printf("Deposit %s... ", money);
+			boolean ok = purse.insert(money);
+			System.out.println((ok ? "ok" : "FAILED"));
 		}
 		if (scanline.hasNext())
 			System.out.println("Invalid input: " + scanline.next());
