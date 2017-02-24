@@ -5,7 +5,7 @@ package coinpurse;
  * @author User
  *
  */
-public interface Valuable {
+public interface Valuable extends Comparable<Valuable> {
 	/**
 	 * 
 	 * @return

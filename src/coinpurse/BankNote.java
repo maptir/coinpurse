@@ -1,21 +1,17 @@
 package coinpurse;
 
-public class BankNote implements Valuable {
-	private final double value;
+public class BankNote extends AbstractValuable {
 	private static long nextSerialNumber = 1000000;
-	private final long serialNumber;
-	private final String currency;
+	private long serialNumber;
 
 	public BankNote(double value) {
-		this.value = value;
+		super(value);
 		this.serialNumber = nextSerialNumber;
 		nextSerialNumber++;
-		currency = "Baht";
 	}
 
 	public BankNote(double value, String currency) {
-		this.value = value;
-		this.currency = currency;
+		super(value, currency);
 		this.serialNumber = nextSerialNumber;
 		nextSerialNumber++;
 	}
@@ -32,18 +28,6 @@ public class BankNote implements Valuable {
 
 	public long getSerial() {
 		return serialNumber;
-	}
-
-	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (this.getClass() != obj.getClass())
-			return false;
-		BankNote bank = (BankNote) obj;
-		if (this.getCurrency() == bank.getCurrency()
-				&& this.getValue() == bank.getValue())
-			return true;
-		return false;
 	}
 
 	public String toString() {
