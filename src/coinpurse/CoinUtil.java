@@ -1,8 +1,6 @@
 package coinpurse;
 
 import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 /**
  * Some Coin utility methods for practice using Lists and Comparator.
@@ -62,21 +60,6 @@ public class CoinUtil {
 	 *            is a List of Coin objects we want to sort.
 	 */
 	public static void sumByCurrency(List<Valuable> value) {
-		// sortByCurrency(coins);
-		// double sum = 0;
-		// for (int i = 0; i < coins.size() - 1; i++) {
-		// sum += coins.get(i).getValue();
-		// if (!coins.get(i).getCurrency()
-		// .equals(coins.get(i + 1).getCurrency())) {
-		// System.out.print(new Valuable(sum, coins.get(i).getCurrency())
-		// + " ");
-		// sum = 0;
-		// }
-		// }
-		// System.out.print(new Valuable(sum
-		// + coins.get(coins.size() - 1).getValue(), coins.get(
-		// coins.size() - 1).getCurrency())
-		// + " ");
 		Map<String, Double> money = new HashMap<String, Double>();
 		for (Valuable v : value) {
 			if (!money.containsKey(v.getCurrency())) {
@@ -146,8 +129,8 @@ public class CoinUtil {
 	}
 
 	/** Print the list on the console, on one line. */
-	public static void printList(List items, String separator) {
-		Iterator iter = items.iterator();
+	public static void printList(List<Valuable> items, String separator) {
+		Iterator<Valuable> iter = items.iterator();
 		while (iter.hasNext()) {
 			System.out.print(iter.next());
 			if (iter.hasNext())

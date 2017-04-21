@@ -3,6 +3,7 @@ package coinpurse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Observable;
 
 /**
  * A coin purse contains coins. You can insert coins, withdraw money, check the
@@ -11,7 +12,7 @@ import java.util.Comparator;
  * 
  * @author Archawin Tirugsapun
  */
-public class Purse {
+public class Purse extends Observable {
 	/** Collection of objects in the purse. */
 	ArrayList<Valuable> money = new ArrayList<Valuable>();
 	/**
@@ -81,9 +82,11 @@ public class Purse {
 	 * @return true if coin inserted, false if can't insert
 	 */
 	public boolean insert(Valuable value) {
-		if (isFull() || value.getValue() == 0)
+		if (isFull() || value.getValue() <= 0)
 			return false;
 		money.add(value);
+		setChanged();
+		notifyObservers(value);
 		return true;
 	}
 
@@ -98,6 +101,7 @@ public class Purse {
 	 *         withdraw requested amount.
 	 */
 	public Valuable[] withdraw(double amount) {
+		double withdrawAmount = 0;
 		Collections.sort(money, new Comparator<Valuable>() {
 			@Override
 			public int compare(Valuable o1, Valuable o2) {
@@ -107,17 +111,18 @@ public class Purse {
 		ArrayList<Valuable> templist = new ArrayList<>();
 		for (Valuable value : money) {
 			if (amount >= value.getValue()) {
+				withdrawAmount += amount;
 				amount -= value.getValue();
 				templist.add(value);
 			}
 		}
-		if (amount > 0) {
+		if (amount > 0)
 			return null;
-		}
-		for (Valuable temp : templist) {
+		for (Valuable temp : templist)
 			money.remove(temp);
-		}
 		Valuable[] withdraw = new Valuable[templist.size()];
+		setChanged();
+		notifyObservers(withdrawAmount);
 		return templist.toArray(withdraw);
 	}
 
