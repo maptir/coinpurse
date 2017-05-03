@@ -17,6 +17,7 @@ public class PurseStatusObserver extends JFrame implements Observer {
 
 	public void initcomponents() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocation(0, 275);
 		textArea = new JTextArea(1, 5);
 		pBar = new JProgressBar();
 		textArea.setFont(new Font(Font.DIALOG, Font.PLAIN, 24));

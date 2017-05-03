@@ -1,9 +1,12 @@
 package coinpurse;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.List;
 import java.util.Observable;
+
+import conipurse.strategy.WithdrawStrategy;
 
 /**
  * A coin purse contains coins. You can insert coins, withdraw money, check the
@@ -14,12 +17,14 @@ import java.util.Observable;
  */
 public class Purse extends Observable {
 	/** Collection of objects in the purse. */
-	ArrayList<Valuable> money = new ArrayList<Valuable>();
+	private List<Valuable> money = new ArrayList<Valuable>();
 	/**
 	 * Capacity is maximum number of coins the purse can hold. Capacity is set
 	 * when the purse is created and cannot be changed.
 	 */
 	private final int capacity;
+
+	private WithdrawStrategy strategy;
 
 	/**
 	 * Create a purse with a specified capacity.
@@ -101,29 +106,25 @@ public class Purse extends Observable {
 	 *         withdraw requested amount.
 	 */
 	public Valuable[] withdraw(double amount) {
-		double withdrawAmount = 0;
-		Collections.sort(money, new Comparator<Valuable>() {
-			@Override
-			public int compare(Valuable o1, Valuable o2) {
-				return Double.compare(o2.getValue(), o1.getValue());
-			}
-		});
-		ArrayList<Valuable> templist = new ArrayList<>();
-		for (Valuable value : money) {
-			if (amount >= value.getValue()) {
-				withdrawAmount += amount;
-				amount -= value.getValue();
-				templist.add(value);
-			}
-		}
-		if (amount > 0)
+		List<Valuable> templist = strategy.withdraw(amount, money);
+		if (templist == null)
 			return null;
-		for (Valuable temp : templist)
-			money.remove(temp);
+		else {
+			for (Valuable temp : templist)
+				money.remove(temp);
+		}
 		Valuable[] withdraw = new Valuable[templist.size()];
 		setChanged();
-		notifyObservers(withdrawAmount);
+		notifyObservers(amount);
 		return templist.toArray(withdraw);
+	}
+
+	public List<Valuable> purseList() {
+		return Collections.unmodifiableList(money);
+	}
+
+	public void setStrategy(WithdrawStrategy strategy) {
+		this.strategy = strategy;
 	}
 
 	/**

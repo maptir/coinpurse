@@ -14,6 +14,7 @@ public class PurseBalanceObserver extends JFrame implements Observer {
 
 	public void initcomponents() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocation(0, 0);
 		textArea = new JTextArea(1, 1);
 		textArea.setFont(new Font(Font.DIALOG, Font.PLAIN, 24));
 		textArea.setText(0.0 + " Baht");

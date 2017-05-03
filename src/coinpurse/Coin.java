@@ -7,6 +7,10 @@ package coinpurse;
  */
 public class Coin extends AbstractValuable {
 	public static final String DEFAULT_CURRENCY = "Baht";
+	/**
+	 * A specialCurrency is currency that have other name to call it like 0.5
+	 * baht we call it "50 Satang" there are many currency like this.
+	 */
 	public String specialCurrecny;
 
 	/**
@@ -28,19 +32,19 @@ public class Coin extends AbstractValuable {
 		super(value, currency);
 	}
 
+	/**
+	 * Set specialCurrency if that currency have the special one.
+	 * 
+	 * @param specialCurrency
+	 */
 	public void setSpecialCurrency(String specialCurrency) {
 		this.specialCurrecny = specialCurrency;
 	}
 
-	/**
-	 * Return string information from it value and currency.
-	 * 
-	 * @return string information from it value and currency.
-	 */
 	public String toString() {
-		if (super.getValue() < 1) {
-			return super.getValue() * 100 + " " + specialCurrecny + " coin";
+		if (value < 1 && specialCurrecny != null) {
+			return value * 100 + " " + specialCurrecny + " coin";
 		}
-		return super.getValue() + " " + currency + " coin";
+		return value + " " + currency + " coin";
 	}
 }

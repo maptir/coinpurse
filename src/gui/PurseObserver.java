@@ -19,6 +19,7 @@ public class PurseObserver extends JFrame implements Observer {
 
 	public void initcomponents() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocation(0, 75);
 		textArea = new JTextArea(5, 30);
 		textArea.setFont(new Font(Font.DIALOG, Font.PLAIN, 24));
 		JScrollPane scrollPane = new JScrollPane(textArea);

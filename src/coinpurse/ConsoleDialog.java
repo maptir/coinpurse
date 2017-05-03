@@ -1,5 +1,6 @@
 package coinpurse;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -67,17 +68,6 @@ public class ConsoleDialog {
 		Scanner scanline = new Scanner(inline);
 		while (scanline.hasNextDouble()) {
 			double value = scanline.nextDouble();
-			// if (value < 20) {
-			// Coin coin = new Coin(value);
-			// System.out.printf("Deposit %s... ", coin.toString());
-			// boolean ok = purse.insert(coin);
-			// System.out.println((ok ? "ok" : "FAILED"));
-			// } else {
-			// BankNote bank = new BankNote(value);
-			// System.out.printf("Deposit %s... ", bank.toString());
-			// boolean ok = purse.insert(bank);
-			// System.out.println((ok ? "ok" : "FAILED"));
-			// }
 			MoneyFactory factory = MoneyFactory.getInstance();
 			Valuable money;
 			try {

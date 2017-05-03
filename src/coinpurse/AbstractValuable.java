@@ -14,41 +14,22 @@ public class AbstractValuable implements Valuable {
 		this.currency = currency;
 	}
 
-	/**
-	 * Check that two coin are equal or not by its currency and value of coin.
-	 * 
-	 * @param obj
-	 *            other object that use to compare.
-	 * 
-	 * @return true if 2 coins are equal.
-	 */
 	public boolean equals(Object obj) {
 		if (obj == null)
 			return false;
 		if (this.getClass() != obj.getClass())
 			return false;
 		Valuable other = (Valuable) obj;
-		if (this.getCurrency().equals(other.getCurrency())
-				&& this.getValue() == other.getValue())
+		if (this.getCurrency().equals(other.getCurrency()) && this.getValue() == other.getValue())
 			return true;
 		return false;
 	}
 
-	/**
-	 * Return the value of the coin.
-	 * 
-	 * @return value of the coin.
-	 */
 	@Override
 	public double getValue() {
 		return value;
 	}
 
-	/**
-	 * Return coin currency.
-	 * 
-	 * @return coin currency.
-	 */
 	@Override
 	public String getCurrency() {
 		return currency;
