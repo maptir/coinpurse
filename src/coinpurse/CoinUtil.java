@@ -23,7 +23,7 @@ public class CoinUtil {
 	 *         the requested currency.
 	 */
 	public static List<Valuable> filterByCurrency(
-			final List<Valuable> coinlist, String currency) {
+			final List<? extends Valuable> coinlist, String currency) {
 		if (coinlist != null && currency != null) {
 			Predicate<Valuable> chooseCur = (v) -> (v.getCurrency()
 					.equals(currency));
@@ -41,8 +41,7 @@ public class CoinUtil {
 	 * @param value
 	 *            is a List of Coin objects we want to sort.
 	 */
-	public static void sortByCurrency(List<Valuable> value) {
-		// Collections.sort(coins, Comparator.comparing(Coin::getCurrency));
+	public static void sortByCurrency(List<? extends Valuable> value) {
 		Collections.sort(value, new Comparator<Valuable>() {
 			@Override
 			public int compare(Valuable o1, Valuable o2) {
@@ -62,7 +61,7 @@ public class CoinUtil {
 	 * @param value
 	 *            is a List of Coin objects we want to sort.
 	 */
-	public static void sumByCurrency(List<Valuable> value) {
+	public static void sumByCurrency(List<? extends Valuable> value) {
 		Map<String, Double> money = new HashMap<String, Double>();
 		for (Valuable v : value) {
 			if (!money.containsKey(v.getCurrency())) {
@@ -75,6 +74,11 @@ public class CoinUtil {
 		for (String key : money.keySet()) {
 			System.out.print(money.get(key) + "-" + key + " ");
 		}
+	}
+
+	public static <E extends Comparable<? super E>> E max(E... a) {
+		List<E> list = Arrays.asList(a);
+		return list.stream().max((e1, e2) -> e1.compareTo(e2)).get();
 	}
 
 	/**
@@ -110,6 +114,12 @@ public class CoinUtil {
 		printList(coins, " ");
 		sumByCurrency(coins);
 
+		List<Coin> coin2 = Arrays
+				.asList(new Coin(5), new Coin(1), new Coin(10));
+		System.out.println(CoinUtil.filterByCurrency(coin2, "Ringgit"));
+
+		System.out.println(CoinUtil.max(new Coin(5), new Coin(10), new Coin(2),
+				new Coin(1), new BankNote(100)));
 	}
 
 	/** Make a list of coins containing different currencies. */
