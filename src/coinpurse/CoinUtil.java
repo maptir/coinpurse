@@ -42,12 +42,8 @@ public class CoinUtil {
 	 *            is a List of Coin objects we want to sort.
 	 */
 	public static void sortByCurrency(List<? extends Valuable> value) {
-		Collections.sort(value, new Comparator<Valuable>() {
-			@Override
-			public int compare(Valuable o1, Valuable o2) {
-				return o1.getCurrency().compareTo(o2.getCurrency());
-			}
-		});
+		Collections.sort(value,
+				(v1, v2) -> v1.getCurrency().compareTo(v2.getCurrency()));
 	}
 
 	/**
