@@ -1,12 +1,8 @@
 package coinpurse;
 
-import java.awt.geom.Area;
 import java.util.*;
 import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import javax.xml.bind.util.ValidationEventCollector;
 
 /**
  * Some Coin utility methods for practice using Lists and Comparator.
