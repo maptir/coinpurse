@@ -1,12 +1,11 @@
 package coinpurse;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
-import conipurse.strategy.WithdrawStrategy;
+import coinpurse.strategy.WithdrawStrategy;
 
 /**
  * A coin purse contains coins. You can insert coins, withdraw money, check the

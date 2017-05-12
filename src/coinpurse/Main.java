@@ -2,11 +2,11 @@ package coinpurse;
 
 import java.util.ResourceBundle;
 
-import conipurse.strategy.GreedyWithdraw;
-import conipurse.strategy.RecursiveWithdraw;
-import gui.PurseBalanceObserver;
-import gui.PurseListModel;
-import gui.PurseStatusObserver;
+import coinpurse.gui.PurseBalanceObserver;
+import coinpurse.gui.PurseListModel;
+import coinpurse.gui.PurseStatusObserver;
+import coinpurse.strategy.GreedyWithdraw;
+import coinpurse.strategy.RecursiveWithdraw;
 
 /**
  * A main class to create objects and connect objects together. The user

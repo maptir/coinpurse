@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import conipurse.strategy.GreedyWithdraw;
-import conipurse.strategy.RecursiveWithdraw;
+import coinpurse.strategy.GreedyWithdraw;
+import coinpurse.strategy.RecursiveWithdraw;
 
 public class WithdrawTest {
 	private Purse purse;

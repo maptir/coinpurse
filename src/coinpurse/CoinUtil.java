@@ -1,6 +1,12 @@
 package coinpurse;
 
+import java.awt.geom.Area;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import javax.xml.bind.util.ValidationEventCollector;
 
 /**
  * Some Coin utility methods for practice using Lists and Comparator.
@@ -22,13 +28,14 @@ public class CoinUtil {
 	 */
 	public static List<Valuable> filterByCurrency(
 			final List<Valuable> coinlist, String currency) {
-		List<Valuable> valueFilter = new ArrayList<>();
-		for (Valuable value : coinlist) {
-			if (value.getCurrency().equals(currency))
-				valueFilter.add(value);
+		if (coinlist != null && currency != null) {
+			Predicate<Valuable> chooseCur = (v) -> (v.getCurrency()
+					.equals(currency));
+			return coinlist.stream().filter(chooseCur)
+					.collect(Collectors.toList());
 		}
-		return valueFilter; // return a list of coin references copied from
-							// coinlist
+		return null;
+		// return a list of coin references copied from coinlist.
 	}
 
 	/**

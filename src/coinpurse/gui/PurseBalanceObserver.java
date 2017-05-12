@@ -1,4 +1,4 @@
-package gui;
+package coinpurse.gui;
 
 import java.awt.Font;
 import java.util.Observable;

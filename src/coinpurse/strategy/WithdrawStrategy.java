@@ -1,4 +1,4 @@
-package conipurse.strategy;
+package coinpurse.strategy;
 
 import java.util.List;
 

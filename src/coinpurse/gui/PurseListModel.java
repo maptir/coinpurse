@@ -1,4 +1,4 @@
-package gui;
+package coinpurse.gui;
 
 import java.util.List;
 import java.util.Observable;
@@ -12,7 +12,8 @@ import javax.swing.JScrollPane;
 import coinpurse.Purse;
 import coinpurse.Valuable;
 
-public class PurseListModel extends AbstractListModel<Valuable> implements Observer {
+public class PurseListModel extends AbstractListModel<Valuable> implements
+		Observer {
 	List<Valuable> money;
 	JList<Valuable> listview;
 	JFrame frame;
@@ -28,7 +29,6 @@ public class PurseListModel extends AbstractListModel<Valuable> implements Obser
 		listview = new JList<>(this);
 		JScrollPane scroll = new JScrollPane(listview);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
 		frame.add(scroll);
 		frame.pack();
 	}
@@ -54,7 +54,6 @@ public class PurseListModel extends AbstractListModel<Valuable> implements Obser
 			Purse purse = (Purse) subject;
 			fireContentsChanged(this, 0, this.getSize() - 1);
 		}
-
 	}
 
 }
